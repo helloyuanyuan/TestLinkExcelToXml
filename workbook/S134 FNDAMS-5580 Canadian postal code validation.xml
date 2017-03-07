@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<testsuite name="S134 FNDAMS-5580 Canadian postal code validation">
+	<details>Improve handling of Canadian postal code validation. Currently this is not functioning properly for Canadian post code.</details>
+	<testcase name="testValid">
+		<node_order>1000</node_order>
+		<summary></summary>
+		<preconditions></preconditions>
+		<status>7</status>
+		<importance>2</importance>
+		<execution_type>2</execution_type>
+		<steps>
+			<step>
+				<step_number>1</step_number>
+				<actions>assertEquals(getAvsZipStatus("11111", "I1"), "Y");</actions>
+				<expectedresults>PC_USZIP</expectedresults>
+				<execution_type>2</execution_type>
+			</step>
+			<step>
+				<step_number>2</step_number>
+				<actions>assertEquals(getAvsZipStatus("111111111", "I1"), "Y");</actions>
+				<expectedresults>PC_USZIPP4</expectedresults>
+				<execution_type>2</execution_type>
+			</step>
+			<step>
+				<step_number>3</step_number>
+				<actions>assertEquals(getAvsZipStatus("11111-1111", "I1"), "Y");</actions>
+				<expectedresults>PC_USZIPP4</expectedresults>
+				<execution_type>2</execution_type>
+			</step>
+		</steps>
+	</testcase>
+	<testcase name="testInvalid_US">
+		<node_order>1001</node_order>
+		<summary></summary>
+		<preconditions></preconditions>
+		<status>7</status>
+		<importance>2</importance>
+		<execution_type>2</execution_type>
+		<steps>
+			<step>
+				<step_number>1</step_number>
+				<actions>assertEquals(getAvsZipStatus("1111", "I1"), "Y");</actions>
+				<expectedresults>PC_NONE</expectedresults>
+				<execution_type>2</execution_type>
+			</step>
+			<step>
+				<step_number>2</step_number>
+				<actions>assertEquals(getAvsZipStatus("111111", "I1"), "Y");</actions>
+				<expectedresults>PC_NONE</expectedresults>
+				<execution_type>2</execution_type>
+			</step>
+			<step>
+				<step_number>3</step_number>
+				<actions>assertEquals(getAvsZipStatus("11111-11111", "I1"), "Y");</actions>
+				<expectedresults>PC_NONE</expectedresults>
+				<execution_type>2</execution_type>
+			</step>
+		</steps>
+	</testcase>
+	<testcase name="testInvalid_CA">
+		<node_order>1002</node_order>
+		<summary></summary>
+		<preconditions></preconditions>
+		<status>7</status>
+		<importance>2</importance>
+		<execution_type>2</execution_type>
+		<steps>
+			<step>
+				<step_number>1</step_number>
+				<actions>assertEquals(getAvsZipStatus("A1A1A", "I1"), "Y");</actions>
+				<expectedresults>PC_NONE</expectedresults>
+				<execution_type>2</execution_type>
+			</step>
+			<step>
+				<step_number>2</step_number>
+				<actions>assertEquals(getAvsZipStatus("11A1A1", "I1"), "Y");</actions>
+				<expectedresults>PC_NONE</expectedresults>
+				<execution_type>2</execution_type>
+			</step>
+			<step>
+				<step_number>3</step_number>
+				<actions>assertEquals(getAvsZipStatus("AAA1A1", "I1"), "Y");</actions>
+				<expectedresults>PC_NONE</expectedresults>
+				<execution_type>2</execution_type>
+			</step>
+		</steps>
+	</testcase>
+</testsuite>
