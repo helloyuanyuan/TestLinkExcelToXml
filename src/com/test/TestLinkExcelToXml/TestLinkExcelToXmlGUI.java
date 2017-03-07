@@ -29,7 +29,7 @@ public class TestLinkExcelToXmlGUI implements ActionListener {
 		JPanel j2 = new JPanel();
 		JLabel jl1 = new JLabel("ExcelTestCase:");
 		jb1 = new JButton("Choose");
-		jb2 = new JButton("excelToXML");
+		jb2 = new JButton("ExcelToXml");
 		jb1.addActionListener(this);
 		jb2.addActionListener(this);
 		j1.add(jl1);
